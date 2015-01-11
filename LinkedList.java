@@ -212,10 +212,86 @@ public class LinkedList {
 	void MoveNode(LinkedList l1, LinkedList l2)
 	{
 		Node n = new Node((int)l2.head.data);
-		n.next = l1.head;
+		
+		if(l1.head.data!=null)
+			n.next = l1.head;
+		
 		l1.head = n;
 		
 		l2.head = l2.head.next;
+	}
+	
+	void altSplit()
+	{
+		LinkedList l1 = new LinkedList();
+		LinkedList l2 = new LinkedList();
+		int i=0;
+		
+		Node temp = head;
+		
+		while(temp!=null)
+		{
+			if(i%2==0)
+			{
+				MoveNode(l1, this);
+			}
+			else
+			{
+				MoveNode(l2, this);
+			}
+			temp = temp.next;
+			i++;
+		}
+		
+		l1.disp();
+		l2.disp();
+	}
+	
+	void shufMerge(LinkedList l1, LinkedList l2)
+	{
+		Node temp1 = l1.head;
+		Node temp2 = l2.head;
+		
+		int i=0;
+		
+		LinkedList l = new LinkedList();
+		
+		while(temp1!=null || temp2!=null)
+		{
+			if(temp1!=null && temp2!=null)
+			{
+				int data;
+				
+				if(i%2==0)
+				{
+					data = (int)temp1.data;
+					temp1 = temp1.next;
+				}
+				else
+				{
+					data = (int)temp2.data;
+					temp2 = temp2.next;
+				}
+				
+				l.add(data);
+				i++;
+			}
+			
+			else
+				if(temp1!=null)
+				{
+					l.add((int)temp1.data);
+					temp1 = temp1.next;
+				}
+				else
+					if(temp2!=null)
+					{
+						l.add((int)temp2.data);
+						temp2 = temp2.next;
+					}
+		}
+		
+		l.disp();
 	}
 	
 	class Node
@@ -236,7 +312,7 @@ public class LinkedList {
 	
 	public static void main(String[] args) {
 		
-		LinkedList ll = new LinkedList();
+	/*	LinkedList ll = new LinkedList();
 		
 		ll.add(13);
 		ll.add(13);
@@ -247,7 +323,7 @@ public class LinkedList {
 		ll.add(1);
 		ll.add(2);
 		ll.add(12);
-		ll.disp();
+		ll.disp();*/
 /*
 		ll.disp();
 		//System.out.println("No. of times : "+ll.count(2));
@@ -268,7 +344,7 @@ public class LinkedList {
 		/*ll.remDup();
 		ll.disp();*/
 		
-		LinkedList l1 = new LinkedList();
+		/*LinkedList l1 = new LinkedList();
 		
 		l1.add(1);
 		l1.add(6);
@@ -278,8 +354,25 @@ public class LinkedList {
 		
 		ll.MoveNode(ll, l1);
 		ll.disp();
-		l1.disp();
+		l1.disp();*/
 		
+		//ll.altSplit();
+		
+		LinkedList l1 = new LinkedList();
+		
+		l1.add(1);
+		l1.add(3);
+		l1.add(5);
+		l1.add(11);
+		
+		LinkedList l2 = new LinkedList();
+		
+		l2.add(4);
+		l2.add(3);
+		l2.add(13);
+		l2.add(20);
+		
+		l1.shufMerge(l1, l2);
 	}
 
 }
