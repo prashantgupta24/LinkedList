@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.ArrayList;
+
 public class LinkedList {
 
 	
@@ -38,12 +40,14 @@ public class LinkedList {
 	{
 		Node temp = head;
 		
-		System.out.print(numNodes);
+		//System.out.print(numNodes);
 		while(temp!=null)
 		{
 			System.out.print("["+temp.data+"]");
 			temp = temp.next;
 		}
+		
+		System.out.println();
 	}
 	
 	int count(int n)
@@ -175,6 +179,45 @@ public class LinkedList {
 		bk.disp();
 	}
 	
+	void remDup()
+	{
+		Node prt = head;
+		Node t = head.next;
+		int ar[] = new int[1000];
+		
+		ar[(int)prt.data]++;
+		
+		while(t!=null)
+		{
+			int data = (int)t.data;
+			if(ar[data]==0)
+			{
+				ar[data]++;
+				prt.next = t;
+				prt = t;
+				t = t.next;
+			}
+			else
+			{
+				t = t.next;	
+			}
+			
+		}
+	
+		prt.next = t;
+
+		
+	}
+	
+	void MoveNode(LinkedList l1, LinkedList l2)
+	{
+		Node n = new Node((int)l2.head.data);
+		n.next = l1.head;
+		l1.head = n;
+		
+		l2.head = l2.head.next;
+	}
+	
 	class Node
 	{
 		Node next = null;
@@ -196,10 +239,15 @@ public class LinkedList {
 		LinkedList ll = new LinkedList();
 		
 		ll.add(13);
-		ll.add(12);
+		ll.add(13);
+		ll.add(13);
+		ll.add(3);
 		ll.add(3);
 		ll.add(2);
 		ll.add(1);
+		ll.add(2);
+		ll.add(12);
+		ll.disp();
 /*
 		ll.disp();
 		//System.out.println("No. of times : "+ll.count(2));
@@ -211,17 +259,26 @@ public class LinkedList {
 		ll.sort();
 		ll.disp();*/
 /*		
+		
+		
+		append(ll,l1);
+		ll.disp();*/
+		
+		//ll.split();
+		/*ll.remDup();
+		ll.disp();*/
+		
 		LinkedList l1 = new LinkedList();
 		
 		l1.add(1);
 		l1.add(6);
 		l1.add(7);
 		l1.add(8);
+		l1.disp();
 		
-		append(ll,l1);
-		ll.disp();*/
-		
-		ll.split();
+		ll.MoveNode(ll, l1);
+		ll.disp();
+		l1.disp();
 		
 	}
 
