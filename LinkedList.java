@@ -294,6 +294,116 @@ public class LinkedList {
 		l.disp();
 	}
 	
+	void Merge(LinkedList l1, LinkedList l2)
+	{
+		Node temp1 = l1.head;
+		Node temp2 = l2.head;
+		
+		if(temp1.data == null)
+			temp1 = null;
+		
+		if(temp2.data == null)
+			temp2 = null;
+		
+		LinkedList l = new LinkedList();
+		
+		while(temp1!=null || temp2!=null)
+		{
+			if(temp1!=null && temp2!=null)
+			{
+				int data;
+				int d1 = (int)temp1.data;
+				int d2 = (int)temp2.data;
+				
+				if(d1<d2)
+				{
+					data = d1;
+					temp1 = temp1.next;
+				}
+				else
+				{
+					data = d2;
+					temp2 = temp2.next;
+				}
+				
+				l.add(data);
+			}
+			
+			else
+				if(temp1!=null)
+				{
+					l.add((int)temp1.data);
+					temp1 = temp1.next;
+				}
+				else
+					if(temp2!=null)
+					{
+						l.add((int)temp2.data);
+						temp2 = temp2.next;
+					}
+		}
+		
+		l.disp();
+	
+		
+	}
+	
+	void Inter(LinkedList l1, LinkedList l2)
+	{
+		//TODO
+		Node temp1 = l1.head;
+		Node temp2 = l2.head;
+		
+		if(temp1.data == null)
+			temp1 = null;
+		
+		if(temp2.data == null)
+			temp2 = null;
+		
+		LinkedList l = new LinkedList();
+		
+		while(temp1!=null || temp2!=null)
+		{
+			if(temp1!=null && temp2!=null)
+			{
+				int data;
+				int d1 = (int)temp1.data;
+				int d2 = (int)temp2.data;
+				
+				if(d1<d2)
+				{
+					data = d1;
+					temp1 = temp1.next;
+				}
+				else
+				{
+					data = d2;
+					temp2 = temp2.next;
+				}
+				
+				l.add(data);
+			}
+			
+			else
+				if(temp1!=null)
+				{
+					l.add((int)temp1.data);
+					temp1 = temp1.next;
+				}
+				else
+					if(temp2!=null)
+					{
+						l.add((int)temp2.data);
+						temp2 = temp2.next;
+					}
+		}
+		
+		l.disp();
+	
+		
+	
+	}
+	
 	class Node
 	{
 		Node next = null;
@@ -368,11 +478,12 @@ public class LinkedList {
 		LinkedList l2 = new LinkedList();
 		
 		l2.add(4);
-		l2.add(3);
+		l2.add(6);
 		l2.add(13);
 		l2.add(20);
 		
-		l1.shufMerge(l1, l2);
+		//l1.shufMerge(l1, l2);
+		l1.Merge(l1, l2);
 	}
 
 }
