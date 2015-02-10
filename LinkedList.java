@@ -404,6 +404,59 @@ public class LinkedList {
 	
 	}
 	
+	//Recursive
+	void revList()
+	{
+		Node temp = head;
+		
+		while(temp.next!=null)
+			temp = temp.next;
+		
+		revList(head);
+		
+		head = temp;
+	}
+	
+	void revList(Node n)
+	{
+		Node first;
+		Node rest;
+		
+		if(n == null)
+			return;
+		
+		first = n;
+		rest = first.next;
+		
+		if(rest == null)
+			return;
+		
+		revList(rest);
+		
+		first.next.next = first;
+		first.next = null;
+		
+		//head = rest;
+	}
+	
+	//iterative
+	void revListIt()
+	{
+		Node current = head;
+		Node prev = null;
+		Node next = null;
+		
+		while(current!=null)
+		{
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+		
+	}
+	
 	class Node
 	{
 		Node next = null;
@@ -473,17 +526,24 @@ public class LinkedList {
 		l1.add(1);
 		l1.add(3);
 		l1.add(5);
+		l1.add(6);
+		l1.add(4);
+		l1.add(2);
 		l1.add(11);
 		
-		LinkedList l2 = new LinkedList();
+		l1.disp();
+		l1.revListIt();
+		l1.disp();
+		
+	/*	LinkedList l2 = new LinkedList();
 		
 		l2.add(4);
 		l2.add(6);
 		l2.add(13);
-		l2.add(20);
+		l2.add(20);*/
 		
 		//l1.shufMerge(l1, l2);
-		l1.Merge(l1, l2);
+		//l1.Merge(l1, l2);
 	}
 
 }
